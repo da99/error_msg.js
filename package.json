@@ -1,0 +1,16 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "happy-dom": "^20.0.10",
+    "vitest": "^4.0.8",
+    "@types/bun": "latest"
+  },
+  "scripts": {
+    "test": "bunx vitest --dom --testNamePattern spec/*.spec.js"
+  },
+  "name": "error_msg.js",
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
