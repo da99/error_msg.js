@@ -14,21 +14,24 @@ function hide_errors(parent) {
     const div = children[i];
     div.classList.add("hide");
   }
+  return parent;
 }
 
-class Error_Msg {
+export class Error_Msg {
   static show(selector, err_type, msg) {
     const target = document.querySelector(selector);
     if (!target)
-      return false;
+      return target;
 
     hide_errors(target);
 
-    const msg_div = target.querySelector("div." + err_type);
+    target.classList.remove('hide');
+
+    let msg_div = target.querySelector("div." + err_type);
     if (!msg_div) {
       msg_div = create_msg_div(err_type, msg);
       target.appendChild(msg_div);
-      return true;
+      return target;
     }
 
     if (msg_div.innerHTML !== msg) {
@@ -36,14 +39,23 @@ class Error_Msg {
       msg_div.appendChild(document.createTextNode(msg));
     }
     msg_div.classList.remove('hide');
-    target.classList.remove('hide');
+
+    return target;
   } // static
 
-  static hide_all(selector) {
-
+  static hide_msgs(selector) {
+    const target = document.querySelector(selector);
+    if (!target)
+      return false;
+    return hide_errors(target);
   } // static
 
-  static hide(selector, err_type) {
-
-  }
+  static hide(selector) {
+    const target = document.querySelector(selector);
+    if (!target)
+      return false;
+    hide_errors(target);
+    target.classList.add('hide');
+    return target;
+  } // static
 }
